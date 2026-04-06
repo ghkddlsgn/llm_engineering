@@ -52,4 +52,5 @@ dependencies = [
     "xgboost>=3.1.1",
     "selenium>=4.41.0",
     "fastapi>=0.121.0",
+    "asyncpg>=0.31.0",
 ]
