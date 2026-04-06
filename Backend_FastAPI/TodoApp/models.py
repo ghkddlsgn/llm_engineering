@@ -23,5 +23,5 @@ class Todos(Base):
     description:Mapped[str] = mapped_column(String)
     priority:Mapped[int] = mapped_column(Integer)
     complete:Mapped[bool] = mapped_column(Boolean, default=False)
-    owner_id:Mapped[int] = mapped_column(in)
+    owner_id:Mapped[int] = mapped_column(Integer)
 

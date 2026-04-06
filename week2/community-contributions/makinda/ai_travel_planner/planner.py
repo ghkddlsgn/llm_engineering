@@ -4,7 +4,7 @@ import re
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from database import init_db, save_trip
+from postgres_for_llm.database import init_db, save_trip
 
 load_dotenv()
 OPENROUTER_BASE = "https://openrouter.ai/api/v1"

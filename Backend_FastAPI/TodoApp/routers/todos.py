@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 from starlette import status
 from Backend_FastAPI.TodoApp.models import Todos
 import Backend_FastAPI.TodoApp.models as models
-from Backend_FastAPI.TodoApp.database import engine, SessionLocal, Base
+from Backend_FastAPI.TodoApp.database import engine, SessionLocal, Base, get_db
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi import APIRouter
@@ -12,15 +12,11 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-async def get_db():
-    async with SessionLocal() as db:
-        yield db
-
 db_dependency = Annotated[AsyncSession, Depends(get_db)]
 
-async def init_todos():
+async def init_tables():
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)    
+        await conn.run_sync(Base.metadata.create_all)
 
 class TodoRequest(BaseModel):
     title:str = Field(min_length=3)
